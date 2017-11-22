@@ -8,16 +8,18 @@ NotificationCenter.default.addObserver(self, selector: #selector(textViewNotific
 该通知调用方法 textViewNotificationAction ：
 ```
     @objc func textViewNotificationAction(notification: Notification) {
+        let limit: Int = 140
         let text = self.textView.text as NSString
-        if text.length >= 140 {
-            let str = text.substring(to: 140)
+        if text.length >= limit {
+            let str = text.substring(to: limit)
             self.textView.text = str
-            self.limitLabel.text = "\(140)"
+            self.limitLabel.text = "\(limit)"
             self.limitLabel.textColor = UIColor.orange
         } else {
             self.limitLabel.textColor = UIColor.darkGray
             self.limitLabel.text = "\(text.length)"
         }
+        self.weiboDetail = String(text)
     }
 ```
 * 同时复习使用通知监听键盘的弹出和隐藏，相关方法参考自简书文章[swift实现ios类似微信输入框跟随键盘弹出的效果](http://www.jianshu.com/p/4e755fe09df7)
