@@ -28,11 +28,12 @@ class ViewController: UIViewController {
     }
     
     @objc func textViewNotificationAction(notification: Notification) {
+        let limit: Int = 140
         let text = self.textView.text as NSString
-        if text.length >= 140 {
-            let str = text.substring(to: 140)
+        if text.length >= limit {
+            let str = text.substring(to: limit)
             self.textView.text = str
-            self.limitLabel.text = "\(140)"
+            self.limitLabel.text = "\(limit)"
             self.limitLabel.textColor = UIColor.orange
         } else {
             self.limitLabel.textColor = UIColor.darkGray
